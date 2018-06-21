@@ -44,9 +44,11 @@
                     table: "#employees",
                     display: "bootstrap",
                     fields: [
-                        {label: "Name:", name: "name"},
+                        {label: "First Name:", name: "name"},
+                        {label: "Last Name:", name: "lastname"},
                         {label: "Email:", name: "email"},
-                        {label: "Password:", name: "password", type: "password"}
+                        {label: "Hyperlink:", name: "hyperlink"},
+                        // {label: "Password:", name: "password", type: "password"}
                     ]
                 });
 

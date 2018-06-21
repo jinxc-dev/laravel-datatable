@@ -15,9 +15,7 @@ class EmployeesDataTable extends DataTable
      */
     public function dataTable($query)
     {
-        // return datatables($query)
-        //     ->addColumn('action', 'employees.action');
-        return datatables($query)->setRowId('id')->addColumn('password', '');
+        return datatables($query)->setRowId('id');//->addColumn('password', '');
     }
 
     /**
@@ -28,8 +26,7 @@ class EmployeesDataTable extends DataTable
      */
     public function query(Employee $model)
     {
-        // return $model->newQuery()->select('id', 'add-your-columns-here', 'created_at', 'updated_at');
-        return $model->newQuery()->select('id', 'name', 'email');
+        return $model->newQuery()->select('id', 'name','lastname', 'hyperlink', 'email');
     }
 
     /**
@@ -39,17 +36,19 @@ class EmployeesDataTable extends DataTable
      */
     public function html()
     {
-        // return $this->builder()
-        //             ->columns($this->getColumns())
-        //             ->minifiedAjax()
-        //             ->addAction(['width' => '80px'])
-        //             ->parameters($this->getBuilderParameters());
+        $w_columns = [
+            ['data' => 'name', 'title'=> 'First Name'],
+            ['data' => 'lastname', 'title'=> 'Last Name'],
+            ['data' => 'hyperlink', 'title'=> 'Hyperlink'],
+            ['data' => 'email', 'title'=> 'Email'],
+        ];
         return $this->builder()
-                    ->columns($this->getColumns())
+                    // ->columns($this->getColumns())
+                    ->columns($w_columns)
                     ->minifiedAjax()
                     ->parameters([
                         'dom' => 'Bfrtip',
-                        'order' => [1, 'asc'],
+                        'order' => [0, 'asc'],
                         'select' => [
                             'style' => 'os',
                             'selector' => 'td:first-child',
@@ -69,12 +68,6 @@ class EmployeesDataTable extends DataTable
      */
     protected function getColumns()
     {
-        // return [
-        //     'id',
-        //     'add your columns',
-        //     'created_at',
-        //     'updated_at'
-        // ];
         return [
             [
                 'data' => null,
@@ -86,6 +79,8 @@ class EmployeesDataTable extends DataTable
             ],
             'id',
             'name',
+            'lastname',
+            'hyperlink',
             'email',
         ];
     }
@@ -97,7 +92,6 @@ class EmployeesDataTable extends DataTable
      */
     protected function filename()
     {
-        // return 'Employees_' . date('YmdHis');
         return 'employees_' . time();
     }
 }

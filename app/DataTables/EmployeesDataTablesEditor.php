@@ -49,33 +49,4 @@ class EmployeesDataTablesEditor extends DataTablesEditor
         return [];
     }
 
-        /**
-    * Pre-create action event hook.
-    *
-    * @param Model $model
-    * @return array
-    */
-    public function creating(Model $model, array $data)
-    {
-        $data['password'] = bcrypt($data['password']);
-
-        return $data;
-    }
-
-    /**
-    * Pre-update action event hook.
-    *
-    * @param Model $model
-    * @return array
-    */
-    public function updating(Model $model, array $data)
-    {
-        if (empty($data['password'])) {
-            unset($data['password']);
-        } else {
-            $data['password'] = bcrypt($data['password']);
-        }
-
-        return $data;
-    }
 }
