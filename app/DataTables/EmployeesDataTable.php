@@ -36,15 +36,8 @@ class EmployeesDataTable extends DataTable
      */
     public function html()
     {
-        $w_columns = [
-            ['data' => 'name', 'title'=> 'First Name'],
-            ['data' => 'lastname', 'title'=> 'Last Name'],
-            ['data' => 'hyperlink', 'title'=> 'Hyperlink'],
-            ['data' => 'email', 'title'=> 'Email'],
-        ];
         return $this->builder()
-                    // ->columns($this->getColumns())
-                    ->columns($w_columns)
+                    ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->parameters([
                         'dom' => 'Bfrtip',
@@ -77,11 +70,19 @@ class EmployeesDataTable extends DataTable
                 'orderable' => false,
                 'searchable' => false
             ],
-            'id',
+            // 'id',
             'name',
             'lastname',
-            'hyperlink',
             'email',
+            [
+                'data' => '',
+                'title' => 'Hyper Link',
+                'render' => 'function(data){
+                    return "<a type=\'button\' href=\'" + this.hyperlink + "\' class=\'btn btn-info\'>" + this.hyperlink + "</a>";
+                }',
+                'orderable' => false,
+                'searchable' => false
+            ],
         ];
     }
 
